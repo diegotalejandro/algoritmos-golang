@@ -11,51 +11,35 @@ type Blog struct {
 	txt string
 }
 // ----------- Read file names on a Directory ------------------
-func ReadFiles(Directory string,number int ) []string{
+func ReadF(Directory string) []Blog{
 	files, err := ioutil.ReadDir(Directory)
 	if err != nil {
 	 log.Fatal(err)
 	}
-	var Blogs[] string Blog
+	var blogs[] Blog
 	var number string
 	var gender string
 	var age string
 	var txt string
 	for _, file := range files {
 	split :=strings.Split(file.Name(), ".")
-	number= append(data,split[0])
-	gender= append(data,split[1])
-	age= append(data,split[2])
+	number= append(number,split[0])
+	gender= append(gender,split[1])
+	age= append(age,split[2])
 	x, _ := ioutil.ReadFile(Directory+"/"+file.Name())
 	temp :=Blog{numero:number ,genero:gender ,edad:age ,txt:string(x)}
+	blogs= append(blogs,temp)
 	//fmt.Println("\n","number:",split[0])
 	//fmt.Println(file.Name())
  }
-
- return data
+ return blogs
 }
-func ()  {
-
-}
+//func ()  {
+//}
 func main(){
-//var number[] string = ReadFiles("C:/Users/Diego/Desktop/Codigos Go -Atom/sampled",0)
-//var gender[] string = ReadFiles("C:/Users/Diego/Desktop/Codigos Go -Atom/sampled",1)
-//var age[] string = ReadFiles("C:/Users/Diego/Desktop/Codigos Go -Atom/sampled",2)
-//var DynamicDirectory[2] string ={"C:/Users/Diego/Desktop/Codigos Go -Atom/sampled/"}
-//files, err := ioutil.ReadDir("C:/Users/Diego/Desktop/Codigos Go -Atom/sampled")
-//if err != nil {
-// log.Fatal(err)
-//}
-//var i int
-//crear lista para objetos de Blog
-//for _,file:=range files {
-//DynamicDirectory[1]=file.Name()
-//  x, y := ioutil.ReadFile(join(DynamicDirectory,""))
-//	temp :=Blog{numero:number[i] ,genero:gender[i] ,edad:age[i] ,txt:string(x)}
-//	temp=temp <- siguiente
-//	i++
-//}
-//fmt.Println(temp.numero)
+	var directorio string="C:/Users/Diego/Desktop/Codigos Go -Atom/sampled"
+	var blogs[] Blog=ReadF(directorio)
+	
 
 
 
