@@ -16,16 +16,12 @@ func ReadF(Directory string) []Blog{
 	if err != nil {
 	 log.Fatal(err)
 	}
-	var blogs[] Blog
-	var number string
-	var gender string
-	var age string
-	var txt string
+	var blogs []Blog
 	for _, file := range files {
 	split :=strings.Split(file.Name(), ".")
-	number= append(number,split[0])
-	gender= append(gender,split[1])
-	age= append(age,split[2])
+	number:= split[0]
+	gender:= split[1]
+	age:= split[2]
 	x, _ := ioutil.ReadFile(Directory+"/"+file.Name())
 	temp :=Blog{numero:number ,genero:gender ,edad:age ,txt:string(x)}
 	blogs= append(blogs,temp)
@@ -39,7 +35,9 @@ func ReadF(Directory string) []Blog{
 func main(){
 	var directorio string="C:/Users/Diego/Desktop/Codigos Go -Atom/sampled"
 	var blogs[] Blog=ReadF(directorio)
-	
+  temp:=blogs[0]
+	fmt.Println(temp)
+
 
 
 
