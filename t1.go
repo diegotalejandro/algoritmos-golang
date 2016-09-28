@@ -6,7 +6,6 @@ import (
 	"log"
 	"strings"
 )
-
 type Blog struct {
 	numero string
 	genero string
@@ -46,16 +45,18 @@ func PalabraMasRepetida(blogs []Blog) []word {
 	for i := 0; i < len(blogs); i++ {
 		aux := blogs[i]
 		temptxt := aux.txt
-		temptxt = strings.Join(string.Split(temptxt, "."), ", ")
-		temptxt = strings.Join(string.Split(temptxt, ","), ", ")
-		temptxt = strings.Join(string.Split(temptxt, ":"), ", ")
+		temptxt = strings.Join(strings.Split(temptxt, "."), " ")
+		temptxt = strings.Join(strings.Split(temptxt, ","), " ")
+		temptxt = strings.Join(strings.Split(temptxt, ":"), " ")
+		temptxt = strings.ToLower(temptxt)
 		for temptxt == "" {
-			arrpalabra := string.Split(temptxt, " ")
+			arrpalabra := strings.Split(temptxt, " ")
 			palabra := arrpalabra[0]
 			contador := strings.Count(temptxt, palabra)
-
-		}
+			tempo:={word:palabra,count:contador}
+			PMR:=append(PMR,tempo)
 	}
+		return PMR
 }
 func main() {
 	var directorio string = "C:/Users/Diego/Desktop/Codigos Go -Atom/sampled"
