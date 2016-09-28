@@ -53,6 +53,7 @@ func PalabraMasRepetida(blogs []Blog) []word {
 			arrpalabra := strings.Split(temptxt, " ")
 			palabra := arrpalabra[0]
 			contador := strings.Count(temptxt, palabra)
+			temptxt=strings.Join(strings.Split(temptxt,palabra)," ")
 			tempo:={word:palabra,count:contador}
 			PMR:=append(PMR,tempo)
 	}
