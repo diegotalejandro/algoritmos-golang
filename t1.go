@@ -6,6 +6,7 @@ import (
 	"log"
 	"strings"
 )
+
 type Blog struct {
 	numero string
 	genero string
@@ -41,29 +42,50 @@ type word struct {
 
 //Parte 1
 func PalabraMasRepetida(blogs []Blog) []word {
-
+	var PMR []word
+	var todoPMR []word
 	for i := 0; i < len(blogs); i++ {
 		aux := blogs[i]
 		temptxt := aux.txt
 		temptxt = strings.Join(strings.Split(temptxt, "."), " ")
 		temptxt = strings.Join(strings.Split(temptxt, ","), " ")
 		temptxt = strings.Join(strings.Split(temptxt, ":"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, "!"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, "¡"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, "?"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, "¿"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, "("), " ")
+		temptxt = strings.Join(strings.Split(temptxt, ")"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, "*"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, "-"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, ""), " ")
 		temptxt = strings.ToLower(temptxt)
-		for temptxt == "" {
-			arrpalabra := strings.Split(temptxt, " ")
-			palabra := arrpalabra[0]
-			contador := strings.Count(temptxt, palabra)
-			temptxt=strings.Join(strings.Split(temptxt,palabra)," ")
-			tempo:={word:palabra,count:contador}
-			PMR:=append(PMR,tempo)
+		fmt.Println(temptxt)
+		for temptxt != "" {
+			arrpalabra := strings.Split(temptxt, " ")   //lo convierte en el arreglo de palabras
+			palabra := arrpalabra[0]                    //indica la primera palabra
+			contador := strings.Count(temptxt, palabra) //cuenta la cantidad de veces q se repite la palabra en el string
+			temptxt = strings.Join(strings.Split(temptxt, palabra), " ")
+			tempo := word{word: palabra, count: contador}
+			PMR = append(PMR, tempo)
+			//fmt.Println(temptxt)
+		}
+		fmt.Println("texto numero ")
+		fmt.Println(i + 1)
+		fmt.Println(" listo")
+		todoPMR = append(todoPMR, PMR...)
+		PMR = PMR[:0]
 	}
-		return PMR
+	return todoPMR
 }
 func main() {
 	var directorio string = "C:/Users/Diego/Desktop/Codigos Go -Atom/sampled"
 	var blogs []Blog = ReadF(directorio)
 	temp := blogs[0]
 	fmt.Println(temp.edad)
+	xd := PalabraMasRepetida(blogs)
+	aux := xd[0]
+	fmt.Print(aux.word)
 
 	// ----------- Read an entire file -------------------
 	//x, _ := ioutil.ReadFile("C:/Users/Diego/Desktop/Codigos Go -Atom/sampled/63420.male.40.txt")
