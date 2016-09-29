@@ -58,24 +58,28 @@ func PalabraMasRepetida(blogs []Blog) []word {
 		temptxt = strings.Join(strings.Split(temptxt, ")"), " ")
 		temptxt = strings.Join(strings.Split(temptxt, "*"), " ")
 		temptxt = strings.Join(strings.Split(temptxt, "-"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ""), " ")
+		temptxt = strings.Join(strings.Split(temptxt, "'"), "")
 		temptxt = strings.ToLower(temptxt)
-		fmt.Println(temptxt)
+		//fmt.Println(temptxt)
 		for temptxt != "" {
-			arrpalabra := strings.Split(temptxt, " ")   //lo convierte en el arreglo de palabras
+			arrpalabra := strings.Fields(temptxt)       //lo convierte en el arreglo de palabras
 			palabra := arrpalabra[0]                    //indica la primera palabra
 			contador := strings.Count(temptxt, palabra) //cuenta la cantidad de veces q se repite la palabra en el string
-			temptxt = strings.Join(strings.Split(temptxt, palabra), " ")
+			temptxt = strings.Trim(temptxt, palabra+" ")
 			tempo := word{word: palabra, count: contador}
 			PMR = append(PMR, tempo)
-			//fmt.Println(temptxt)
+			fmt.Println(palabra, contador, "-------------------------------------------------------------------------------------")
+			fmt.Println(temptxt)
+			if palabra == "my" {
+				break
+			}
 		}
-		fmt.Println("texto numero ")
-		fmt.Println(i + 1)
-		fmt.Println(" listo")
+		fmt.Println("texto numero ", i+1, " listo")
 		todoPMR = append(todoPMR, PMR...)
 		PMR = PMR[:0]
+		break
 	}
+
 	return todoPMR
 }
 func main() {
