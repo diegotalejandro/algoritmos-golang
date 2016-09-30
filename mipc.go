@@ -62,7 +62,6 @@ type word struct {
 //Parte 1
 func PalabraMasRepetida(blogs []Blog) []word {
 	var PMR []word
-	var todoPMR []word
 	for i := 0; i < len(blogs); i++ {
 		aux := blogs[i]
 		temptxt := aux.txt
@@ -89,21 +88,24 @@ func PalabraMasRepetida(blogs []Blog) []word {
 			contador := strings.Count(temptxt, palabra) //cuenta la cantidad de veces q se repite la palabra en el string
 			temptxt = strings.Join(strings.Split(temptxt, " "+palabra+" "), " ")
 			tempo := word{word: palabra, count: contador}
-			if i==0
-			{PMR = append(PMR, tempo)}
-			else
-			{
-			for j:=0; j < len(PMR); j++{
-				//aun me falta xd
+			if i == 0 {
+				PMR = append(PMR, tempo)
+			} else {
+				for j := 0; j < len(PMR); j++ {
+					if PMR[j].word == tempo.word {
+						PMR[j].count = PMR[j].count + tempo.count
+					} else {
+						PMR = append(PMR, tempo)
+					}
+				}
 			}
-		}
 		}
 		fmt.Println("texto numero ", i+1, " listo---------------------------------------------------------------------------------")
 		//todoPMR = append(todoPMR, PMR...)
 		//PMR = PMR[:0]
 	}
 
-	return todoPMR
+	return PMR
 }
 func main() {
 	var directorio string = "C:/Users/Diego/Desktop/Codigos Go -Atom/sampled"
