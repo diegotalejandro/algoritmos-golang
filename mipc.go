@@ -14,6 +14,25 @@ type Blog struct {
 	txt    string
 }
 
+//separa por rango de edad, rangos: 13-17,23-27,33-47
+func separar(slice []Blog) ([]Blog, []Blog, []Blog) {
+	var rango1 []Blog
+	var rango2 []Blog
+	var rango3 []Blog
+	for i := 0; i < len(slice); i++ {
+		if slice[i].edad >= "13" && slice[i].edad <= "17" {
+			rango1 = append(rango1, slice[i])
+		}
+		if slice[i].edad >= "23" && slice[i].edad <= "27" {
+			rango2 = append(rango2, slice[i])
+		}
+		if slice[i].edad >= "33" && slice[i].edad <= "47" {
+			rango3 = append(rango3, slice[i])
+		}
+	}
+	return rango1, rango2, rango3
+}
+
 // ----------- Lee el nombre y texto de cada archivo de txt y lo mete en un obejto Blog-------------------
 func ReadF(Directory string) []Blog {
 	files, err := ioutil.ReadDir(Directory)
@@ -50,6 +69,7 @@ func PalabraMasRepetida(blogs []Blog) []word {
 		temptxt = strings.Join(strings.Split(temptxt, "."), " ")
 		temptxt = strings.Join(strings.Split(temptxt, ","), " ")
 		temptxt = strings.Join(strings.Split(temptxt, ":"), " ")
+		temptxt = strings.Join(strings.Split(temptxt, ";"), " ")
 		temptxt = strings.Join(strings.Split(temptxt, "!"), " ")
 		temptxt = strings.Join(strings.Split(temptxt, "¡"), " ")
 		temptxt = strings.Join(strings.Split(temptxt, "?"), " ")
@@ -59,34 +79,39 @@ func PalabraMasRepetida(blogs []Blog) []word {
 		temptxt = strings.Join(strings.Split(temptxt, "*"), " ")
 		temptxt = strings.Join(strings.Split(temptxt, "-"), " ")
 		temptxt = strings.Join(strings.Split(temptxt, "'"), "")
+		temptxt = strings.Join(strings.Split(temptxt, "\""), "")
 		temptxt = strings.ToLower(temptxt)
 		//fmt.Println(temptxt)
-    for  strings.Join(strings.Fields(temptxt),"") != "" {
-			arrpalabra := strings.Fields(temptxt)       //lo convierte en el arreglo de palabras
-			palabra := arrpalabra[0]                    //indica la primera palabra
+		for strings.Join(strings.Fields(temptxt), "") != "" {
+			arrpalabra := strings.Fields(temptxt) //lo convierte en el arreglo de palabras
+			palabra := arrpalabra[0]
+			fmt.Println(len(arrpalabra))                //indica la primera palabra
 			contador := strings.Count(temptxt, palabra) //cuenta la cantidad de veces q se repite la palabra en el string
-			temptxt = strings.Join(strings.Split(temptxt," "+palabra+" ")," ")
+			temptxt = strings.Join(strings.Split(temptxt, " "+palabra+" "), " ")
 			tempo := word{word: palabra, count: contador}
-			PMR = append(PMR, tempo)
-			fmt.Println(palabra, contador, "-------------------------------------------------------------------------------------")
-			fmt.Println(temptxt)
+			if i==0
+			{PMR = append(PMR, tempo)}
+			else
+			{
+			for j:=0; j < len(PMR); j++{
+				//aun me falta xd
+			}
 		}
-		fmt.Println("texto numero ", i+1, " listo")
-		todoPMR = append(todoPMR, PMR...)
-		PMR = PMR[:0]
-		break
+		}
+		fmt.Println("texto numero ", i+1, " listo---------------------------------------------------------------------------------")
+		//todoPMR = append(todoPMR, PMR...)
+		//PMR = PMR[:0]
 	}
 
 	return todoPMR
 }
 func main() {
-	var directorio string = "/home/jose/Descargas/sampled"
+	var directorio string = "C:/Users/Diego/Desktop/Codigos Go -Atom/sampled"
 	var blogs []Blog = ReadF(directorio)
-  temp := blogs[0]
-	fmt.Println(temp.edad)
-	xd := PalabraMasRepetida(blogs)
-  aux := xd[0]
-	fmt.Print(aux.word)
+	R1, R2, R3 := separar(blogs)
+	fmt.Println(R1[0].edad, R2[0].edad, R3[0].edad)
+	xd := PalabraMasRepetida(R1)
+	fmt.Println(xd[0].word)
 
 	// ----------- Read an entire file -------------------
 	//x, _ := ioutil.ReadFile("C:/Users/Diego/Desktop/Codigos Go -Atom/sampled/63420.male.40.txt")
