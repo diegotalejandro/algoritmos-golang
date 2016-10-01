@@ -66,20 +66,21 @@ func PalabraMasRepetida(blogs []Blog) []word {
 	for i := 0; i < len(blogs); i++ {
 		aux := blogs[i]
 		temptxt := aux.txt
-		temptxt = strings.Join(strings.Split(temptxt, "."), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ","), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ":"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ";"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "!"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "¡"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "?"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "¿"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "("), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ")"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "*"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "-"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "'"), "")
-		temptxt = strings.Join(strings.Split(temptxt, "\""), "")
+		temptxt = strings.Replace(temptxt, ".", " ", -1)
+		temptxt = strings.Replace(temptxt, ",", " ", -1)
+		temptxt = strings.Replace(temptxt, ":", " ", -1)
+		temptxt = strings.Replace(temptxt, ";", " ", -1)
+		temptxt = strings.Replace(temptxt, "!", " ", -1)
+		temptxt = strings.Replace(temptxt, "¡", " ", -1)
+		temptxt = strings.Replace(temptxt, "?", " ", -1)
+		temptxt = strings.Replace(temptxt, "¿", " ", -1)
+		temptxt = strings.Replace(temptxt, "(", " ", -1)
+		temptxt = strings.Replace(temptxt, ")", " ", -1)
+		temptxt = strings.Replace(temptxt, "*", " ", -1)
+		temptxt = strings.Replace(temptxt, "-", " ", -1)
+		temptxt = strings.Replace(temptxt, "'", " ", -1)
+		temptxt = strings.Replace(temptxt, "\"", " ", -1)
+		//temptxt = strings.Replace(temptxt, "", " ", -1)
 		temptxt = strings.ToLower(temptxt)
 		//fmt.Println(temptxt)
 		for strings.Join(strings.Fields(temptxt), "") != "" {
@@ -111,7 +112,6 @@ func PalabraMasRepetida(blogs []Blog) []word {
 		fmt.Println("texto numero ", i+1, " listo---------------------------------------------------------------------------------")
 		//todoPMR = append(todoPMR, PMR...)
 		//PMR = PMR[:0]
-		break
 	}
 	return PMR
 }

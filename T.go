@@ -64,33 +64,35 @@ func PalabraMasRepetida(blogs []Blog) []word {
 	var PMR []word
 	var palabrastxt string
 	for i := 0; i < len(blogs); i++ {
+		i = 87
 		aux := blogs[i]
 		temptxt := aux.txt
-		temptxt = strings.Join(strings.Split(temptxt, "."), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ","), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ":"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ";"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "!"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "¡"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "?"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "¿"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "("), " ")
-		temptxt = strings.Join(strings.Split(temptxt, ")"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "*"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "-"), " ")
-		temptxt = strings.Join(strings.Split(temptxt, "'"), "")
-		temptxt = strings.Join(strings.Split(temptxt, "\""), "")
+		temptxt = strings.Replace(temptxt, ".", " ", -1)
+		temptxt = strings.Replace(temptxt, ",", " ", -1)
+		temptxt = strings.Replace(temptxt, ":", " ", -1)
+		temptxt = strings.Replace(temptxt, ";", " ", -1)
+		temptxt = strings.Replace(temptxt, "!", " ", -1)
+		temptxt = strings.Replace(temptxt, "¡", " ", -1)
+		temptxt = strings.Replace(temptxt, "?", " ", -1)
+		temptxt = strings.Replace(temptxt, "¿", " ", -1)
+		temptxt = strings.Replace(temptxt, "(", " ", -1)
+		temptxt = strings.Replace(temptxt, ")", " ", -1)
+		temptxt = strings.Replace(temptxt, "*", " ", -1)
+		temptxt = strings.Replace(temptxt, "-", " ", -1)
+		temptxt = strings.Replace(temptxt, "'", " ", -1)
+		temptxt = strings.Replace(temptxt, "\"", " ", -1)
+		//temptxt = strings.Replace(temptxt, "", " ", -1)
 		temptxt = strings.ToLower(temptxt)
 		//fmt.Println(temptxt)
 		for strings.Join(strings.Fields(temptxt), "") != "" {
-			i = 87
 			arrpalabra := strings.Fields(temptxt) //lo convierte en el arreglo de palabras
 			palabra := arrpalabra[0]
-			fmt.Println(len(arrpalabra), "(", i, ")")   //indica la primera palabra
+			fmt.Print(len(arrpalabra), "(", i, ")")     //indica la primera palabra
 			contador := strings.Count(temptxt, palabra) //cuenta la cantidad de veces q se repite la palabra en el string
+			fmt.Println(palabra, contador)
 			tempo := word{word: palabra, count: contador}
 			if i > 0 {
-				if strings.Index(palabrastxt, palabra) != -1 {
+				if strings.Index(palabrastxt, " "+palabra+" ") != -1 {
 					for j := 0; j < len(PMR); j++ {
 						if PMR[j].word == palabra {
 							PMR[j].count = PMR[j].count + contador
@@ -105,13 +107,30 @@ func PalabraMasRepetida(blogs []Blog) []word {
 				palabrastxt = palabrastxt + palabra + " "
 				PMR = append(PMR, tempo)
 			}
+			//if len(arrpalabra) >= 2000 {
+			//fmt.Println(temptxt)
+			//}
 			temptxt = strings.Join(strings.Split(temptxt, " "+palabra+" "), " ")
 
+			if strings.Index(temptxt, " "+palabra+" ") != -1 {
+				println("alguno entro")
+				temptxt = strings.Join(strings.Split(temptxt, " "+palabra), " ")
+				if strings.Index(temptxt, " "+palabra+" ") != -1 {
+					temptxt = strings.Join(strings.Split(temptxt, palabra+" "), " ")
+					if strings.Index(temptxt, " "+palabra+" ") != -1 {
+						temptxt = strings.Join(strings.Split(temptxt, palabra), " ")
+					}
+				}
+			}
+			//	if len(arrpalabra) == 1455 {
+			//	fmt.Println(temptxt)
+			//break
+			//	}
 		}
 		fmt.Println("texto numero ", i+1, " listo---------------------------------------------------------------------------------")
+		break
 		//todoPMR = append(todoPMR, PMR...)
 		//PMR = PMR[:0]
-		break
 	}
 	return PMR
 }
@@ -121,8 +140,9 @@ func main() {
 	R1, R2, R3 := separar(blogs)
 	fmt.Println(len(R1), len(R2), len(R3))
 	xd := PalabraMasRepetida(R1)
-	fmt.Println(xd[0].word, blogs[87].numero, blogs[87].genero, blogs[87].edad)
-
+	for i := 0; i < 20; i++ {
+		fmt.Println(xd[i].count)
+	}
 	// ----------- Read an entire file -------------------
 	//x, _ := ioutil.ReadFile("C:/Users/Diego/Desktop/Codigos Go -Atom/sampled/63420.male.40.txt")
 	//lee el txt y lo mete en un string
