@@ -106,7 +106,7 @@ func PalabraMasRepetida(blogs []string, Directory string) []word {
 		}
 		fmt.Println("texto numero ", i+1, " listo---------------------------------------------------------------------------------")
 		//todoPMR = append(todoPMR, PMR...)
-		break //PMR = PMR[:0]
+		//PMR = PMR[:0]
 	}
 	return PMR
 }
@@ -123,15 +123,23 @@ func main() {
 	var xd1, xd2, xd3 []word
 	R1, R2, R3 := separar(blogs)
 	xd1 = PalabraMasRepetida(R1, directorio)
-	println(xd1)
 	sort.Sort(ByCount(xd1))
-	println(xd1[:20])
+	println("Edad entre 13 y 17:")
+	for i := 0; i < 20; i++ {
+		println("Palabra:    ", xd1[i].word, "           Cantidad:    ", xd1[i].count)
+	}
 	xd2 = PalabraMasRepetida(R2, directorio)
 	sort.Sort(ByCount(xd2))
-	println(xd2[:20])
+	println("Edad entre 23 y 27:")
+	for i := 0; i < 20; i++ {
+		println("Palabra:    ", xd2[i].word, "           Cantidad:    ", xd2[i].count)
+	}
 	xd3 = PalabraMasRepetida(R3, directorio)
 	sort.Sort(ByCount(xd3))
-	println(xd3[:20])
+	println("Edad entre 33 y 47:")
+	for i := 0; i < 20; i++ {
+		println("Palabra:    ", xd3[i].word, "           Cantidad:    ", xd3[i].count)
+	}
 	// ----------- Read an entire file -------------------
 	//x, _ := ioutil.ReadFile("C:/Users/Diego/Desktop/Codigos Go -Atom/sampled/63420.male.40.txt")
 	//lee el txt y lo mete en un string
