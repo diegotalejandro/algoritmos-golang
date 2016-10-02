@@ -84,19 +84,27 @@ func PalabraMasRepetida(blogs []Blog) []word {
 		temptxt = strings.ToLower(temptxt)
 		//fmt.Println(temptxt)
 		for strings.Join(strings.Fields(temptxt), "") != "" {
-			i = 87
 			arrpalabra := strings.Fields(temptxt) //lo convierte en el arreglo de palabras
 			palabra := arrpalabra[0]
-			fmt.Println(len(arrpalabra), "(", i, ")")   //indica la primera palabra
+			fmt.Println(len(arrpalabra), "(", i, ")") //indica la primera palabra
+			//for k:=0; k < len(arrpalabra); k++ {
+			//	if k > 0 {
+			//		if arrpalabra[k] ==  {
+			//
+			//		}
+			//	} else {
+			//
+			//	}
+			//}
 			contador := strings.Count(temptxt, palabra) //cuenta la cantidad de veces q se repite la palabra en el string
-			tempo := word{word: palabra, count: contador}
+			//	tempo := word{word: palabra, count: contador}
 			if i > 0 {
 				if strings.Index(palabrastxt, palabra) != -1 {
-					for j := 0; j < len(PMR); j++ {
-						if PMR[j].word == palabra {
-							PMR[j].count = PMR[j].count + contador
-						}
-					}
+					//for j := 0; j < len(PMR); j++ {
+					//if PMR[j].word == palabra {
+					//PMR[j].count = PMR[j].count + contador
+					//}
+					//}
 				} else {
 					palabrastxt = palabrastxt + palabra + " "
 					PMR = append(PMR, tempo)
