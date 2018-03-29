@@ -1,0 +1,93 @@
+switch(state) {
+  case 1:
+    switch(readSymbol()) {
+      case 0:
+        moveLeft();
+        state = 1;
+        break;
+      case 1:
+        moveLeft();
+        state = 1;
+        break;
+      case \#:
+        moveRight();
+        state = 2;
+        break;
+  break;
+case 4:
+  switch(readSymbol()) {
+    case 0:
+      moveRight();
+      state = 4;
+      break;
+    case 1:
+      moveRight();
+      state = 4;
+      break;
+    case \#:
+      moveLeft();
+      state = 6;
+      break;
+}}
+  break;
+case 2:
+  switch(readSymbol()) {
+    case 0:
+      write(\#);
+      moveRight();
+      state = 3;
+      break;
+    case 1:
+      write(\#);
+      moveRight();
+      state = 4;
+      break;
+    case \#:
+      state = HALT;
+      break;
+} break;
+case 3:
+  switch(readSymbol()) {
+    case 0:
+      moveRight();
+      state = 3;
+      break;
+    case 1:
+      moveRight();
+      state = 3;
+      break;
+    case \#:
+      moveLeft();
+      state = 5;
+      break;
+}
+    break;
+  case 5:
+    switch(readSymbol()) {
+      case 0:
+        write(\#);
+        state = 1;
+        moveLeft();
+        break;
+      case 1:
+        state = HALT;
+        break;
+      case \#:
+        state = HALT;
+        break;
+} break;
+  case 6:
+    switch(readSymbol()) {
+      case 0:
+        state = HALT;
+        break;
+      case 1:
+        write(\#);
+        state = 1;
+        moveLeft();
+        break;
+      case \#:
+        state = HALT;
+        break;
+} break;
+}

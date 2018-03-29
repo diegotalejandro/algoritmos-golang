@@ -1,0 +1,36 @@
+// Example program
+#include <iostream>
+using   namespace std;
+
+string find(string arr[], int size) {
+    int count = 0, i;
+    string mElement;
+
+    for (i = 0; i < size; i++) {
+        if (count == 0) mElement = arr[i];
+
+        if (arr[i] == mElement) count++;
+        else count--;
+    }
+
+    count = 0;
+    for (i = 0; i < size; i++) {
+        if (arr[i] == mElement) count++;
+    }
+
+    if (count > size / 2) return mElement;
+    return "-1";
+}
+
+int main()
+{
+  string arr[200];
+  for(int i=0;i<200;i++){
+  if(i<101)
+  arr[i]="hola";
+  if(i>=101)
+  arr[i]="chao";
+  }
+
+  cout<<"The majority element is: "<<endl<<find(arr,10);
+}
