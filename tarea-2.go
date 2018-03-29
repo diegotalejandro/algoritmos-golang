@@ -1,12 +1,18 @@
 package main
+<<<<<<< HEAD
 
 import (
 	"bytes"
+=======
+import(
+  "bytes"
+>>>>>>> origin/master
 	"encoding/json"
 	"fmt"
 	"io"
 	"log"
 	"os"
+<<<<<<< HEAD
 	"sync"
 )
 
@@ -79,11 +85,21 @@ func Tarjan(g Graph) [][]ID {
 		if _, ok := d.index[v]; !ok {
 			// tarjan(G, v, globalIndex, S, result)
 			tarjan(g, v, d)
+=======
+	"sync")
+
+func SCC(g grafo) [][]ID{//SCC: Strongly Connected Components
+	d:=newSCC()
+	for v:= range g.GetNodes(){
+		if _, ok:= d.index[v];c !ok{
+			scc(g,v,d)
+>>>>>>> origin/master
 		}
 	}
 	return d.result
 }
 
+<<<<<<< HEAD
 type tarjanData struct {
 	mu sync.Mutex // guards the following
 
@@ -242,12 +258,24 @@ type node struct {
 
 var nodeCnt uint64
 
+=======
+type sccData struct{
+
+}
+
+
+type node struct{
+	id string
+}
+var nodeCnt uint64
+>>>>>>> origin/master
 func NewNode(id string) Node {
 	return &node{
 		id: id,
 	}
 }
 
+<<<<<<< HEAD
 func (n *node) ID() ID {
 	return StringID(n.id)
 }
@@ -709,4 +737,29 @@ func NewGraphFromJSON(rd io.Reader, graphID string) (Graph, error) {
 	}
 
 	return g, nil
+=======
+func (n *node) ID() ID{
+	return StringID(n.id)
+}
+
+func (n *node) String() string{
+	return n.id
+}
+
+type grafo struct{
+idparanodos map[ID]Node
+nodopararecursos map[ID]map[ID]float64
+nodoparaobjetivos map[ID]map[ID]float64
+}
+func newGrafo() *grafo{
+	return &grafo{
+		idparanodos: make(map[ID]Node),
+		nodopararecursos: make(map[ID]map[ID]float64),
+		nodoparaobjetivos: make(map[ID]map[ID]float64),
+	}
+}
+
+func NewGrafo() grafo{
+	return newGrafo()
+>>>>>>> origin/master
 }
